@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import Square from './Square';
 import { styled } from '@mui/system';
@@ -11,16 +11,21 @@ const GridStyled = styled('div')({
 });
 
 const Matrix = () => {
-
+    const [clickedCount, setClickedCount] = useState(1);
     return (
         <GridStyled>
             {Array.from(Array(9)).map((_, index) => (
-                <Grid item xs={4} key={index} style={{ padding: 0 }}>
-                    {index === 0 || index % 2 === 0 ? (
-                        <Square clickedValue={'X'}/>
+                <Grid item xs={4} key={index} style={{ padding: 0 }} onClick = {() => setClickedCount(clickedCount+1)}>
+                    {clickedCount < 9 ? (
+                        clickedCount % 2 === 0 ? (
+                            <Square clickedValue={0}/>
+                        ) : (
+                            <Square clickedValue={'X'} />
+                        )
                     ) : (
-                        <Square clickedValue={0} />
+                        clickedCount === 1
                     )}
+                    
                 </Grid>
             ))}
         </GridStyled>
