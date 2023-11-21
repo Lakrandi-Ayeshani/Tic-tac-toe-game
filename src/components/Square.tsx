@@ -20,10 +20,11 @@ const MyButtonStyled = styled('button')({
 });
 
 const Square = () => {
+    const [value, setValue] = useState<'X'| 0 | null>(null);
 
     return (
-        <MyButtonStyled >
-           X
+        <MyButtonStyled onClick={() =>setValue(0)}>
+            {value}
         </MyButtonStyled>
     );
 }
