@@ -19,11 +19,15 @@ const MyButtonStyled = styled('button')({
 
 });
 
-const Square = () => {
+interface SqureProps { 
+    clickedValue: 'X' | 0;
+}
+
+const Square: React.FC<SqureProps> = ({ clickedValue }) => {
     const [value, setValue] = useState<'X'| 0 | null>(null);
 
     return (
-        <MyButtonStyled onClick={() =>setValue(0)}>
+        <MyButtonStyled onClick={() =>setValue(clickedValue)}>
             {value}
         </MyButtonStyled>
     );
