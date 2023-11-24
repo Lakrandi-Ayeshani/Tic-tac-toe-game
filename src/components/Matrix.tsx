@@ -34,7 +34,19 @@ const Matrix: React.FC = () => {
         let newValues = [...values];
         newValues[index] = player;
         setValues(newValues);
+        const isWinner = checkWinner(newValues);
+    const checkWinner = (newValues: Array<SquareValue | null>) => {
+        const isWin: boolean = winningCombinations.some((combination) => {
+            const [a, b, c] = combination;
+            console.log(a,b,c);
+            if (newValues[a] && newValues[a] === newValues[b] && newValues[a] === newValues[c]){
+                return true;
+            }
+            return false;
+        });
+        return isWin;
     }
+    
     return (
         <GridStyled>
                 {values.map((valueDisplay , index) => (
