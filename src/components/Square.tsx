@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from '@mui/system';
+import { SquareValue } from '../type/Type';
 
 const MyButtonStyled = styled('button')({
     width: '100px',
@@ -8,28 +9,32 @@ const MyButtonStyled = styled('button')({
     cursor: 'pointer',
     backgroundColor: '',
     fontSize: '70px',
-
     '&:hover': {
         backgroundColor: '435585',
     },
-
     '&:actiive': {
         backgroundColor: 'black',
     },
-
 });
 
-interface SqureProps { 
-    clickedValue: 'X' | 0;
+interface SquareProps {
+    value: SquareValue | null;
+    setValue: (index: number) => void;
+    index: number;
 }
 
-const Square: React.FC<SqureProps> = ({ clickedValue }) => {
-    const [value, setValue] = useState<'X'| 0 | null>(null);
+const Square: React.FC<SquareProps> = (props) => {
+    
+    const handleSetValue = () => {
+        if(props.value === null) {
+            props.setValue(props.index);
+        }
+    }
 
     return (
-        <MyButtonStyled onClick={() =>setValue(clickedValue)}>
-            {value}
-        </MyButtonStyled>
+        <MyButtonStyled onClick={handleSetValue}>
+            {props.value}
+        </MyButtonStyled>   
     );
 }
 
