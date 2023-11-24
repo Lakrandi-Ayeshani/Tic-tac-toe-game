@@ -30,11 +30,28 @@ const Matrix: React.FC = () => {
     const [values, setValues] = useState<Array<SquareValue | null>>(
         defaultValues
     );
+    const [player, setPlayer] = useState<SquareValue>('O');
+    const [gameOver, setGameOver] = useState<boolean>(false);
+
     const setValue = (index: number) => {
+        if(gameOver) {
+            return false;
+        }
         let newValues = [...values];
         newValues[index] = player;
         setValues(newValues);
         const isWinner = checkWinner(newValues);
+        if(isWinner) {
+            setGameOver(true);
+        }
+        setPlayer(player === 'X' ? 'O' : 'X');
+    }
+
+    const handleNewGame = () => {
+        setValues(defaultValues);
+        setGameOver(false);
+    }
+
     const checkWinner = (newValues: Array<SquareValue | null>) => {
         const isWin: boolean = winningCombinations.some((combination) => {
             const [a, b, c] = combination;
