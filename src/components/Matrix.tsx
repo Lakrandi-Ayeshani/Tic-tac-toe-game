@@ -65,6 +65,7 @@ const Matrix: React.FC = () => {
     }
     
     return (
+        <Grid container>
         <GridStyled>
                 {values.map((valueDisplay , index) => (
                     <Grid item xs={4} key={index} style={{ padding: 0 }}>   
@@ -72,6 +73,11 @@ const Matrix: React.FC = () => {
                 </Grid>
             ))}
         </GridStyled>
+            <div>
+                <Button onClick={handleNewGame}>New Game</Button>
+                <h4>{player === 'O' ? 'Player O tern' : 'Player X tern'}</h4>
+            </div>
+        </Grid>
     );
 };
 
