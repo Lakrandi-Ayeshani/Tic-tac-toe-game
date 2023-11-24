@@ -30,6 +30,11 @@ const Matrix: React.FC = () => {
     const [values, setValues] = useState<Array<SquareValue | null>>(
         defaultValues
     );
+    const setValue = (index: number) => {
+        let newValues = [...values];
+        newValues[index] = player;
+        setValues(newValues);
+    }
     return (
         <GridStyled>
                 {values.map((valueDisplay , index) => (
