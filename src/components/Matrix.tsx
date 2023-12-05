@@ -82,59 +82,28 @@ const Matrix: React.FC = () => {
     }
     console.log(isWinner);
     return (
-        <Grid container margin={4}>
-            <Grid item xs={12} sm={6} padding={1}>
+        <Grid container >
+            <Grid item xs={12} sm={6} paddingTop={5} alignContent={''} >
                 <GridStyled>
                     {values.map((valueDisplay , index) => (
                         <Grid item xs={4} key={index} style={{ padding: 0 }}>   
-                            <Square index={index} value={valueDisplay}  setValue={setValue} color={defaulColors[index]}/>
+                            <Square index={index} value={valueDisplay}  setValue={setValue} color={squareColors[index]}/>
                         </Grid>
                     ))}
                 </GridStyled>
             </Grid>
-            <Grid paddingTop={2} width={'30%'}>
-                <Button variant="contained" color="success" onClick={handleNewGame}>New Game</Button>
+            <Grid item paddingTop={6} marginRight={'auto'} marginLeft={'auto'}>    
+                <Grid item marginLeft={'auto'} marginRight={'auto'}>
+                    <Button variant="contained" color="success" onClick={handleNewGame} sx={{marginLeft:'auto', marginRight: 'auto'}}>New Game</Button>
+                </Grid>     
                 {isWinner && gameOver ? (
-                    <p>{player === 'O' ? 'Congratulations...! Player X won' : 'Congratulations...! Player O won'}</p>
+                    <p style={{color: '#2e7d32'}}>{player === 'O' ? 'Congratulations...! Player X won' : 'Congratulations...! Player O won'}</p>
                 ) : (
-                    <p>{player === 'O' ? 'TERN: Player O ' : 'TERN: Player X'}</p>
-                )}
-                
+                    <p style={{color: '#2e7d32'}}>{player === 'O' ? 'TURN: Player O, click one squre ' : 'TURN: Player X, click one squre'}</p>
+                )}                
             </Grid>
         </Grid>
     );
 };
 
 export default Matrix;
-
-
-    // const [clickedCount, setClickedCount] = useState(0);
-
-    // const checkWinner = (board) => {
-    //     for (let i = 0; i < winningCombinations.length; i++) {
-    //       const [a, b, c] = winningCombinations[i];
-    //       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-    //         return true; // We have a winner
-    //       }onClick = {() => setClickedCount(clickedCount+1)}
-    //     }
-    //     return false;
-    //   };
-
-    /* {   clickedCount < 10 ? (
-                                clickedCount % 2 === 0 ? (
-                                    <Square clickedValue={0} clickedCount={clickedCount} setClickedCount={setClickedCount}/>
-                                ) : (
-                                    <Square clickedValue={'X'} clickedCount={clickedCount} setClickedCount={setClickedCount}/>
-                                )
-                            ) : (
-                                <div>
-                                    {Array.from(Array(9)).map((_, index) => (
-                                        <Square clickedValue={null}  key={index} clickedCount={0} setClickedCount={setClickedCount}/>
-                                    ))} 
-                                </div>
-                            )
-                        }     */
-
-    /* <div>
-                <Button onClick={() => setClickedCount(10)}>New Game</Button>
-            </div> */
