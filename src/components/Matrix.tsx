@@ -9,6 +9,8 @@ const GridStyled = styled('div')({
   flexWrap: 'wrap',
   width: '300px',
   height: '300px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
 });
 
 const Matrix: React.FC = () => {
@@ -17,11 +19,14 @@ const Matrix: React.FC = () => {
         null, null, null,
         null, null, null
     ];
-    const [defaulColors, setDefaultColors] = useState<Array<string>>([
-        '#2c387e', '#2c387e', '#2c387e',
-        '#2c387e', '#2c387e', '#2c387e',
-        '#2c387e', '#2c387e', '#2c387e'
-    ]);
+    const defaultColors = [
+        '#2e7d32', '#2e7d32', '#2e7d32',
+        '#2e7d32', '#2e7d32', '#2e7d32',
+        '#2e7d32', '#2e7d32', '#2e7d32',
+    ];
+    const [squareColors, setSquareColors] = useState<Array<string>>(
+        defaultColors
+    );
     const winningCombinations = [
         [0, 1, 2],
         [3, 4, 5],
@@ -37,7 +42,7 @@ const Matrix: React.FC = () => {
     );
     const [player, setPlayer] = useState<SquareValue>('O');
     const [gameOver, setGameOver] = useState<boolean>(false);
-    let [isWinner, setIsWinner] = useState<boolean>(false);
+    const [isWinner, setIsWinner] = useState<boolean>(false);
 
     const setValue = (index: number) => {
         if(gameOver) {
@@ -56,6 +61,7 @@ const Matrix: React.FC = () => {
 
     const handleNewGame = () => {
         setValues(defaultValues);
+        setSquareColors(defaultColors);
         setGameOver(false);
     }
 
@@ -63,11 +69,11 @@ const Matrix: React.FC = () => {
         const isWin: boolean = winningCombinations.some((combination) => {
             const [a, b, c] = combination;
             if (newValues[a] && newValues[a] === newValues[b] && newValues[a] === newValues[c]){
-                const newColors = [...defaulColors];
-                newColors[a] = '#039be5';
-                newColors[b] = '#039be5';
-                newColors[c] = '#039be5';
-                setDefaultColors(newColors);
+                const newColors = [...squareColors];
+                newColors[a] = '#81c784';
+                newColors[b] = '#81c784';
+                newColors[c] = '#81c784';
+                setSquareColors(newColors);
                 return true;
             }
             return false;
