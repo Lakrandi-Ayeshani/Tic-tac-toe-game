@@ -7,19 +7,22 @@ import { Button } from '@mui/material';
 const MyButtonStyled = styled('button')<{
     $bgColor?: string;
 }>`
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     padding: 0;
     cursor: pointer;
     background-color: ${props => props.$bgColor};
     font-size: 70px;
-    color: ${props => props.$bgColor === '#81c784' ? '#2e7d32' : '#81c784'};
     text
     &:hover {
         background-color: #1b5e20;
     }
     &:active {
         background-color: black;
+    }
+    @media (max-width: 700px) {
+        width: 100px;
+        height: 100px
     }
 `;
 
@@ -39,7 +42,8 @@ const Square: React.FC<SquareProps> = (props) => {
     }
 
     return (
-        <MyButtonStyled  $bgColor={props.color} onClick={handleSetValue}>
+        // <MyButtonStyled  $bgColor={props.color} onClick={handleSetValue}>
+        <MyButtonStyled  className={`${props.color === '#2e7d32' ? 'squre' : ' squre win-squre'}`} onClick={handleSetValue}>
             {props.value}
         </MyButtonStyled>   
     );

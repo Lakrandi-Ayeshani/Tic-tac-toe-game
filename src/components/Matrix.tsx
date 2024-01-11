@@ -7,10 +7,14 @@ import { SquareValue } from '../type/Type';
 const GridStyled = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
-  width: '300px',
-  height: '300px',
+  width: '459px',
+  height: '459px',
   marginLeft: 'auto',
   marginRight: 'auto',
+  '@media (max-width: 700px)': {
+    width: '303px', // Change the width for md and below
+    height: '303px', // Change the height for md and below
+  },
 });
 
 const Matrix: React.FC = () => {
@@ -83,8 +87,8 @@ const Matrix: React.FC = () => {
     console.log(isWinner);
     return (
         <Grid container >
-            <Grid item xs={12} sm={6} paddingTop={5} alignContent={''} >
-                <GridStyled>
+            <Grid item xs={12} md={8} paddingTop={5} alignContent={''} className='order'>
+                <GridStyled className='matrix'>
                     {values.map((valueDisplay , index) => (
                         <Grid item xs={4} key={index} style={{ padding: 0 }}>   
                             <Square index={index} value={valueDisplay}  setValue={setValue} color={squareColors[index]}/>
@@ -92,14 +96,15 @@ const Matrix: React.FC = () => {
                     ))}
                 </GridStyled>
             </Grid>
-            <Grid item paddingTop={6} marginRight={'auto'} marginLeft={'auto'}>    
-                <Grid item marginLeft={'auto'} marginRight={'auto'}>
+            {/* <Grid item paddingTop={6} marginRight={'auto'} marginLeft={'auto'} style={{ order: 1 }}>     */}
+            <Grid item paddingTop={6}  marginRight={'auto'} marginLeft={{xs:'auto', md:0}} textAlign={{xs:'center', md:'left'}}>    
+                <Grid item marginLeft={'auto'} marginRight={'auto'} > 
                     <Button variant="contained" color="success" onClick={handleNewGame} sx={{marginLeft:'auto', marginRight: 'auto'}}>New Game</Button>
                 </Grid>     
                 {isWinner && gameOver ? (
-                    <p style={{color: '#2e7d32'}}>{player === 'O' ? 'Congratulations...! Player X won' : 'Congratulations...! Player O won'}</p>
+                    <p style={{color: '#f0efef'}}>{player === 'O' ? 'Congratulations...! Player X won' : 'Congratulations...! Player O won'}</p>
                 ) : (
-                    <p style={{color: '#2e7d32'}}>{player === 'O' ? 'TURN: Player O, click one squre ' : 'TURN: Player X, click one squre'}</p>
+                    <p style={{color: '#f0efef'}}>{player === 'O' ? 'TURN: Player O, click one squre ' : 'TURN: Player X, click one squre'}</p>
                 )}                
             </Grid>
         </Grid>
