@@ -6,9 +6,9 @@
 
 ### XL screen view
 
-![XL screen game](./src/docs/XL.png)
+![XL screen game](./docs/XL.png)
 
 ### Small screen view
 
-![SM screen view](./src/docs/MD.png)
+![SM screen view](./docs/MD.png)
 
